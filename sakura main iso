@@ -1,0 +1,55 @@
+# Sakura Linux ISO Builder
+# Based on Ubuntu 22.04 LTS + GNOME + Custom Theme
+
+# Vorbereitung: Abhängigkeiten installieren
+sudo apt update && sudo apt install -y \
+  git live-build debootstrap squashfs-tools xorriso grub-pc-bin grub-efi-bin mtools
+
+# Projektordner erstellen
+mkdir sakura-linux && cd sakura-linux
+
+# Live-Build konfigurieren
+lb config \
+  --distribution jammy \
+  --archive-areas "main universe multiverse restricted" \
+  --debian-installer live \
+  --binary-images iso-hybrid \
+  --bootappend-live "boot=live components"
+
+# Paketliste erstellen
+mkdir -p config/package-lists
+cat <<EOF > config/package-lists/sakura.list.chroot
+ubuntu-gnome-desktop
+firefox
+vlc
+code
+git
+curl
+neofetch
+gnome-tweaks
+build-essential
+EOF
+
+# Theme, Wallpaper und Autostart hinzufügen
+mkdir -p config/includes.chroot/usr/share/backgrounds/
+cp /pfad/zu/deinem/black_wallpaper.jpg config/includes.chroot/usr/share/backgrounds/sakura_wallpaper.jpg
+
+mkdir -p config/includes.chroot/etc/skel/.config/autostart
+cat <<EOF > config/includes.chroot/etc/skel/.config/autostart/gnome-dark.desktop
+[Desktop Entry]
+Type=Application
+Exec=gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Enable Dark Mode
+EOF
+
+# (Optional) Theme-Ordner vorbereiten
+mkdir -p config/includes.chroot/usr/share/themes/
+# git clone oder kopiere dein Cherry-Blossom-Theme hierher
+
+# ISO bauen
+sudo lb build
+
+# Ergebnis: live-image-amd64.hybrid.iso
