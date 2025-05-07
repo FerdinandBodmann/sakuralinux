@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sakura Linux 🌸</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0b0f1a;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+      height: 100vh;
+      position: relative;
+    }
+
+    header {
+      background: linear-gradient(to right, #1c1f2a, #2b2135);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: #ffc9e3;
+      font-family: 'Sawarabi Mincho', serif;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      color: #ccc;
+    }
+
+    .cta {
+      margin-top: 2rem;
+    }
+
+    .cta a {
+      display: inline-block;
+      background: #ffc9e3;
+      color: #222;
+      padding: 0.8rem 1.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .cta a:hover {
+      background: #f29cb6;
+      transform: scale(1.05);
+    }
+
+    nav {
+      background: #141821;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      font-size: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffc9e3;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #ffc9e3;
+      font-family: 'Sawarabi Mincho', serif;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature {
+      background: #1a1e2a;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 280px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border: 1px solid #fbb7d4;
+    }
+
+    .feature h3 {
+      color: #fbb7d4;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature p {
+      color: #ccc;
+    }
+
+    .screenshots img {
+      width: 300px;
+      border-radius: 8px;
+      margin: 1rem;
+      box-shadow: 0 0 10px rgba(255, 201, 227, 0.1);
+      border: 2px solid #ffc9e3;
+    }
+
+    footer {
+      background: #111;
+      padding: 2rem;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ffc9e3;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .screenshots img {
+        width: 90%;
+      }
+    }
+
+    /* Sakura Petal Animation */
+    @keyframes sakuraFall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+      }
+    }
+
+    .sakura-petal {
+      position: absolute;
+      font-size: 2rem;
+      top: -20px;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+      animation: sakuraFall linear infinite;
+      animation-duration: 6s;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌸 Sakura Linux</h1>
+    <p>Lightweight. Beautiful. Secure. Based on Ubuntu 22.04 LTS</p>
+    <div class="cta">
+      <a href="#download">Download ISO</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#download">Download</a>
+    <a href="https://github.com/FerdinandBodmann/sakuralinux">GitHub</a>
+  </nav>
+
+  <section id="features">
+    <h2>🌸 Features</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Cherry Blossom Theme</h3>
+        <p>Beautiful GTK and GNOME theme with sakura-inspired styling in dark mode.</p>
+      </div>
+      <div class="feature">
+        <h3>Powerful Tools</h3>
+        <p>Pre-installed Firefox, VS Code, VLC, Git, Curl, Neofetch and more.</p>
+      </div>
+      <div class="feature">
+        <h3>Installable ISO</h3>
+        <p>Fully installable system with live session and user-friendly Ubiquity installer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screenshots">
+    <h2>🌸 Screenshots</h2>
+    <div class="screenshots">
+      <img src="sakura-desktop.png" alt="Sakura Desktop">
+      <img src="sakura-terminal.png" alt="Sakura Terminal">
+      <img src="sakura-hud.png" alt="Sakura HUD">
+    </div>
+  </section>
+
+  <section id="download">
+    <h2>🌸 Download</h2>
+    <p>Get the latest Sakura Linux ISO image and installation guide from our GitHub page.</p>
+    <div class="cta">
+      <a href="https://github.com/FerdinandBodmann/sakuralinux/releases">⬇️ Download Latest Release</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Sakura Linux. Made with 🌸 and Open Source. | <a href="https://github.com/FerdinandBodmann/sakuralinux">GitHub</a></p>
+  </footer>
+
+  <script>
+    function createPetals() {
+      const petal = document.createElement('div');
+      petal.classList.add('sakura-petal');
+      petal.textContent = "🌸";  // Emoji für die Kirschblüte
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 10000);
+    }
+
+    setInterval(createPetals, 100);
+  </script>
+</body>
+</html>
