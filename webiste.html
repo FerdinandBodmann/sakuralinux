@@ -85,8 +85,12 @@
     }
 
     section {
+      height: 100vh;
       padding: 4rem 2rem;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     section h2 {
@@ -154,46 +158,81 @@
       }
     }
 
-    /* Sakura Petal Animation */
-    @keyframes sakuraFall {
-      0% {
-        transform: translateY(-10vh) rotate(0deg);
-        opacity: 0.5;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0.3;
-      }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 40px;
+      background: transparent;
+      transition: width 0.3s ease;
+      z-index: 1000;
     }
 
-    .sakura-petal {
+    .sidebar:hover {
+      width: 220px;
+      background: #141821;
+    }
+
+    .arrow {
       position: absolute;
-      font-size: 2rem;
-      top: -20px;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.5;
-      animation: sakuraFall linear infinite;
-      animation-duration: 6s;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: #fff;
+      cursor: pointer;
+      z-index: 1001;
+      transition: transform 0.3s ease;
     }
 
+    .sidebar:hover .arrow {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .sidebar-content {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 2rem;
+      gap: 1.5rem;
+    }
+
+    .sidebar:hover .sidebar-content {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sidebar a {
+      color: #ffc9e3;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      white-space: nowrap;
+      transition: color 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #fff;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      fill: #ffc9e3;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>🌸 Sakura Linux</h1>
-    <p>Lightweight. Beautiful. Secure. Based on Ubuntu 22.04 LTS</p>
-    <div class="cta">
-      <a href="#download">Download ISO</a>
-    </div>
-  </header>
-
-  <nav>
-    <a href="#features">Features</a>
-    <a href="#screenshots">Screenshots</a>
-    <a href="#download">Download</a>
-    <a href="https://github.com/FerdinandBodmann/sakuralinux">GitHub</a>
-  </nav>
 
   <section id="features">
     <h2>🌸 Features</h2>
@@ -209,6 +248,14 @@
       <div class="feature">
         <h3>Installable ISO</h3>
         <p>Fully installable system with live session and user-friendly Ubiquity installer.</p>
+      </div>
+      <div class="feature">
+        <h3>Community Support</h3>
+        <p>For Updates Just follow our Instagram Channel and for more help DM me on Instagram.</p>
+      </div>
+      <div class="feature">
+        <h3>Regular Updates</h3>
+        <p>Stay secure with regular system updates and patches.</p>
       </div>
     </div>
   </section>
@@ -235,20 +282,32 @@
   </footer>
 
   <script>
-    function createPetals() {
-      const petal = document.createElement('div');
-      petal.classList.add('sakura-petal');
-      petal.textContent = "🌸";  // Emoji für die Kirschblüte
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = 5 + Math.random() * 5 + 's';
-      document.body.appendChild(petal);
+    // Schnelles Scrollen zum ausgewählten Abschnitt
+    const links = document.querySelectorAll('.sidebar a');
 
-      setTimeout(() => {
-        petal.remove();
-      }, 10000);
-    }
+    links.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
 
-    setInterval(createPetals, 100);
+        // Schnelles Scrollen ohne Verzögerung
+        window.scrollTo(0, targetElement.offsetTop);
+      });
+    });
   </script>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="arrow">▶</div>
+    <div class="sidebar-content">
+      <a href="#features">🌸 Features</a>
+      <a href="#screenshots">🖼️ Screenshots</a>
+      <a href="#download">⬇️ Download</a>
+      <a href="https://github.com/FerdinandBodmann/sakuralinux" target="_blank">💻 GitHub</a>
+      <a href="https://instagram.com" target="_blank">📷 Instagram</a>
+      <a href="https://wa.me/49123456789" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
 </body>
 </html>
