@@ -229,10 +229,35 @@
       fill: #ffc9e3;
       flex-shrink: 0;
     }
+
+    .sakura-petal {
+      position: fixed;
+      top: -2em;
+      font-size: 1.5rem;
+      animation: fall linear;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
+
+  <section id="welcome">
+    <h2>🌸 Hello, we are Sakura Linux</h2>
+    <p style="max-width: 600px; margin: 1rem auto; font-size: 1.1rem; color: #ccc;">
+      Welcome to a beautiful and open-source operating system inspired by the elegance of cherry blossoms.
+    </p>
+    <div class="cta">
+      <a href="https://github.com/FerdinandBodmann/sakuralinux" target="_blank">💻 Join us on GitHub</a>
+    </div>
+  </section>
 
   <section id="features">
     <h2>🌸 Features</h2>
@@ -251,7 +276,7 @@
       </div>
       <div class="feature">
         <h3>Community Support</h3>
-        <p>For Updates Just follow our Instagram Channel and for more help DM me on Instagram.</p>
+        <p>Follow us on Instagram and DM us for help!</p>
       </div>
       <div class="feature">
         <h3>Regular Updates</h3>
@@ -281,18 +306,31 @@
     <p>© 2025 Sakura Linux. Made with 🌸 and Open Source. | <a href="https://github.com/FerdinandBodmann/sakuralinux">GitHub</a></p>
   </footer>
 
+  <!-- Sakura Petal Rain -->
   <script>
-    // Schnelles Scrollen zum ausgewählten Abschnitt
-    const links = document.querySelectorAll('.sidebar a');
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.className = 'sakura-petal';
+      petal.textContent = '🌸';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+    setInterval(createPetal, 150);
+  </script>
 
+  <!-- Smooth Scroll Script -->
+  <script>
+    const links = document.querySelectorAll('.sidebar a');
     links.forEach(link => {
       link.addEventListener('click', function(event) {
-        event.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-
-        // Schnelles Scrollen ohne Verzögerung
-        window.scrollTo(0, targetElement.offsetTop);
+        if (this.getAttribute('href').startsWith('#')) {
+          event.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
   </script>
@@ -301,13 +339,21 @@
   <div class="sidebar">
     <div class="arrow">▶</div>
     <div class="sidebar-content">
+      <a href="#welcome">👋 Welcome</a>
       <a href="#features">🌸 Features</a>
       <a href="#screenshots">🖼️ Screenshots</a>
       <a href="#download">⬇️ Download</a>
       <a href="https://github.com/FerdinandBodmann/sakuralinux" target="_blank">💻 GitHub</a>
-      <a href="https://instagram.com" target="_blank">📷 Instagram</a>
-      <a href="https://wa.me/49123456789" target="_blank">💬 WhatsApp</a>
+      <a href="https://www.instagram.com/sakuralinux_official/" target="_blank">📷 Instagram</a>
+      <a href="https://wa.me/4915226687516" target="_blank">💬 WhatsApp</a>
+      <a href="https://discord.gg/DW67kFrmr4" target="_blank">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M20.317 4.369a19.791 19.791 0 0 0-4.885-1.515c-.211.375-.444.864-.608 1.249a18.36 18.36 0 0 0-5.486 0 12.08 12.08 0 0 0-.617-1.249 19.736 19.736 0 0 0-4.885 1.515C.533 9.045-.32 13.579.099 18.057a19.9 19.9 0 0 0 5.993 3.028c.46-.63.87-1.295 1.226-1.994a13.056 13.056 0 0 1-1.885-.9c.126-.095.252-.192.372-.291 3.927 1.79 8.18 1.79 12.061 0 .12.099.246.196.373.291a12.36 12.36 0 0 1-1.886.899c.36.698.77 1.363 1.225 1.993a19.876 19.876 0 0 0 6.002-3.028c.5-5.177-.838-9.673-3.548-13.661ZM8.02 15.331c-1.182 0-2.155-1.085-2.155-2.419 0-1.333.955-2.418 2.155-2.418 1.21 0 2.182 1.095 2.155 2.418 0 1.334-.955 2.419-2.155 2.419Zm7.974 0c-1.182 0-2.155-1.085-2.155-2.419 0-1.333.955-2.418 2.155-2.418 1.21 0 2.182 1.095 2.155 2.418 0 1.334-.955 2.419-2.155 2.419Z"/>
+        </svg>
+        Discord
+      </a>
     </div>
   </div>
+
 </body>
 </html>
